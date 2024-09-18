@@ -59,3 +59,4 @@ def play_round(player, difficulty):
         print(f"❌ Wrong! The correct cocktail was {cocktail_name}.")
         print(f"🖼️ Here's a picture of the {cocktail_name}: {image_url}")
         return 0
+    return final_score
