@@ -1,3 +1,15 @@
+"""
+    Cocktail Connoisseur Main Game Module
+
+    This module serves as the entry point for the multiplayer version of the 'Cocktail Connoisseur' game.
+    It handles the main game loop, including player setup, round progression, score tracking, and winner celebration.
+    The game involves multiple players taking turns to guess cocktails based on ingredients, with difficulty levels and
+    rounds determined by player input.
+
+    Functions:
+    - play_game(): Runs the main game loop, manages player interactions, and calculates scores.
+"""
+
 from colorama import Fore, Style
 from leaderboard import display_leaderboard, save_leaderboard
 from prompts import prompt_number_of_players, prompt_player_names, prompt_number_of_rounds, prompt_difficulty

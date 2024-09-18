@@ -1,8 +1,8 @@
 """
-Cocktail Guessing Game Module
-=============================
+    Cocktail Connoisseur Game Module
 
-This module provides functionality for a cocktail guessing game where players try to guess the name of a cocktail based on its ingredients.
+
+    This module provides functionality for a cocktail guessing game where players try to guess the name of a cocktail based on its ingredients.
 """
 
 

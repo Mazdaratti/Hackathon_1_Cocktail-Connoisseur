@@ -1,6 +1,6 @@
 """
 Wikipedia Module
-================
+
 
 This module provides functionality to fetch and clean cocktail ingredients from Wikipedia.
 
