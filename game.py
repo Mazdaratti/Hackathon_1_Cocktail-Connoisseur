@@ -12,7 +12,7 @@ from cocktails import cocktails
 from hints import provide_hints
 
 
-def play_round(player, difficulty):
+def play_round(player, difficulty, used_cocktails):
     """
         Plays a single round of the game by selecting a random cocktail from the given difficulty.
         The player can request hints during the round, which will reduce their final score for the round.
@@ -20,14 +20,19 @@ def play_round(player, difficulty):
         Args:
             player (str): The name of the player.
             difficulty (str): The selected difficulty level (easy, medium, hard).
-
+            used_cocktails (set): A set of cocktails that have already been used in the current session.
         Returns:
             int: Points earned by the player in the round.
     """
-    cocktail_data = random.choice(cocktails[difficulty])
+    available_cocktails = [cocktail for cocktail in cocktails[difficulty] if cocktail['name'] not in used_cocktails]
+    if not available_cocktails:
+        print("No more unique cocktails available. Ending the game.")
+        return 0
+
+    cocktail_data = random.choice(available_cocktails)
     cocktail_name = cocktail_data["name"]
     cocktail_wikipedia = cocktail_data["wikipedia"]
-
+    used_cocktails.add(cocktail_name)
     # Fetch and clean the ingredients and image from Wikipedia
     ingredients, image_url = get_cocktail_ingredients_and_url(cocktail_wikipedia)
 

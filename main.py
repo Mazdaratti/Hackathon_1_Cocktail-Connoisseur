@@ -35,13 +35,14 @@ def play_game():
 
     # Initialize the players' scores
     scores = {player: 0 for player in players}
-
+    # Initialize the set to keep track of used cocktails
+    used_cocktails = set()
     # Play the specified number of rounds
     for round_num in range(num_of_rounds):
         print(f"{Fore.BLUE}\n=== Round {round_num + 1} ==={Style.RESET_ALL}")
         for player in players:
             print(f"\n{player}'s turn:")
-            scores[player] += play_round(player, difficulty)
+            scores[player] += play_round(player, difficulty, used_cocktails)
 
     # Display and save the leaderboard,and announce the winner
     display_leaderboard(scores)
