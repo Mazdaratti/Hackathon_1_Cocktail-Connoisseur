@@ -4,10 +4,6 @@
     This module provides functionalities to generate and deliver hints for cocktails in the 'Cocktail Connoisseur' game.
     It helps the player guess the correct cocktail name by offering hints, such as the number of words in the cocktail name
     and its first letter. The player can request hints up to a maximum number defined by the game rules.
-
-    Functions:
-    - get_cocktail_hint(cocktail_name): Generates a list of hints for the given cocktail name.
-    - provide_hints(cocktail_name, max_hints): Offers hints to the player based on their request and limits the number of hints provided.
 """
 
 
