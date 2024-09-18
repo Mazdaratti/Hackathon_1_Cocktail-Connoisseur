@@ -9,6 +9,7 @@
     - get_cocktail_ingredients_and_url(cocktail_wikipedia): Fetches cocktail ingredients and image URL from Wikipedia.
 """
 
+
 import requests
 from bs4 import BeautifulSoup
 
