@@ -1,8 +1,8 @@
 """
     Cocktail Connoisseur Game Module
 
-
-    This module provides functionality for a cocktail guessing game where players try to guess the name of a cocktail based on its ingredients.
+    This module provides functionality for a cocktail guessing game
+    where players try to guess the name of a cocktail based on its ingredients.
 """
 
 
@@ -29,7 +29,7 @@ def play_round(player, difficulty):
     cocktail_wikipedia = cocktail_data["wikipedia"]
 
     # Fetch and clean the ingredients and image from Wikipedia
-    ingredients, image_url = get_cocktail_ingredients(cocktail_wikipedia)
+    ingredients, image_url = get_cocktail_ingredients_and_url(cocktail_wikipedia)
 
     if ingredients is None:
         print(f"Could not find details for {cocktail_name}. Skipping...")
