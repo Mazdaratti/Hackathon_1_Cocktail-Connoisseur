@@ -3,9 +3,6 @@
 
     This module contains functions to handle the display of game instructions and the winner celebration in the 'Cocktail Connoisseur' game. The functions are designed to enhance the user experience by providing colorful, formatted messages using the `colorama` library.
 
-    Functions:
-    - display_game_instructions(): Displays the game rules and instructions.
-    - celebrate_winner(players_scores): Celebrates the winner(s) by displaying a special message based on the game results.
 """
 
 from colorama import Fore, Style
