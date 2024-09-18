@@ -4,9 +4,6 @@
     This module provides a function to fetch and clean cocktail ingredients and retrieve the image URL
     from a cocktail's Wikipedia page using the BeautifulSoup library. The function sends an HTTP request
     to the Wikipedia page and extracts relevant information from the infobox.
-
-    Functions:
-    - get_cocktail_ingredients_and_url(cocktail_wikipedia): Fetches cocktail ingredients and image URL from Wikipedia.
 """
 
 
