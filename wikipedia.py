@@ -52,7 +52,7 @@ def get_cocktail_ingredients_and_url(cocktail_wikipedia):
                     content = row.find('td')
                     if content:
                         for item in content.find_all(['li', 'p']):
-                            text = item.get_text(strip=False).replace("\xa0", " ")
+                            text = item.get_text().strip()
                             if text:
                                 ingredients.append(text)
 
