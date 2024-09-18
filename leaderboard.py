@@ -4,6 +4,7 @@
     This module provides functionality for displaying and saving a leaderboard for a game.
 """
 
+
 from colorama import Fore, Style
 
 
