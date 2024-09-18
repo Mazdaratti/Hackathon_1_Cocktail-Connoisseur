@@ -2,7 +2,6 @@
     Cocktail Connoisseur Display Module
 
     This module contains functions to handle the display of game instructions and the winner celebration in the 'Cocktail Connoisseur' game. The functions are designed to enhance the user experience by providing colorful, formatted messages using the `colorama` library.
-
 """
 
 
