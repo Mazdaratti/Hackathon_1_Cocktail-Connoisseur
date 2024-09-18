@@ -4,13 +4,8 @@
     This module provides prompt functions to interact with the player for gathering essential game settings,
     such as the number of players, player names, the number of rounds, and the game's difficulty level.
     These prompts form the basis for setting up the multiplayer game of 'Cocktail Connoisseur'.
-
-    Functions:
-    - prompt_number_of_players(): Prompts the user to input the number of players.
-    - prompt_player_names(num_players): Prompts the user to input each player's name.
-    - prompt_number_of_rounds(): Prompts the user to input the number of rounds to play.
-    - prompt_difficulty(): Prompts the user to choose a difficulty level for the game.
 """
+
 
 import cocktails
 
