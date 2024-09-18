@@ -1,40 +1,37 @@
 """
-Wikipedia Module
+    Cocktail Connoisseur Wikipedia Ingredient and Image Fetcher
 
+    This module provides a function to fetch and clean cocktail ingredients and retrieve the image URL
+    from a cocktail's Wikipedia page using the BeautifulSoup library. The function sends an HTTP request
+    to the Wikipedia page and extracts relevant information from the infobox.
 
-This module provides functionality to fetch and clean cocktail ingredients from Wikipedia.
-
-Functions:
-----------
-- get_cocktail_ingredients(cocktail_wikipedia) -> list[str] | None:
-    Fetches and cleans cocktail ingredients from the specified Wikipedia page.
-
-Dependencies:
--------------
-- requests
-- bs4 BeautifulSoup: Used to fetch and parse Wikipedia pages.
-
-Usage:
-------
-To fetch and clean cocktail ingredients, call the `get_cocktail_ingredients` function with the Wikipedia page title of the cocktail. The function returns a list of cleaned ingredients if found, otherwise None.
-
-
+    Functions:
+    - get_cocktail_ingredients_and_url(cocktail_wikipedia): Fetches cocktail ingredients and image URL from Wikipedia.
 """
-
 
 import requests
 from bs4 import BeautifulSoup
 
 
-def get_cocktail_ingredients(cocktail_wikipedia):
+def get_cocktail_ingredients_and_url(cocktail_wikipedia):
     """
-    Fetches and cleans cocktail ingredients from Wikipedia.
+        Fetches and cleans cocktail ingredients and image URL from a Wikipedia page.
 
-    Args:
-        cocktail_wikipedia (str): The Wikipedia page title for the cocktail.
+        This function sends an HTTP GET request to the Wikipedia page of the specified cocktail.
+        It uses BeautifulSoup to parse the page and extract ingredients listed in the infobox and
+        the image URL, if available. The ingredients are cleaned to remove unnecessary characters.
 
-    Returns:
-        list: A list of cleaned ingredients if found, otherwise None.
+        Args:
+            cocktail_wikipedia (str): The Wikipedia page title for the cocktail.
+
+        Returns:
+            tuple: A tuple containing two elements:
+                - A list of cleaned cocktail ingredients (list of str).
+                - The image URL of the cocktail (str), or None if no image is found.
+
+        Raises:
+            HTTPError: If the request to Wikipedia fails.
+            Exception: For any other exceptions encountered during the process.
     """
     try:
         url = f"https://en.wikipedia.org/wiki/{cocktail_wikipedia}"
@@ -44,21 +41,28 @@ def get_cocktail_ingredients(cocktail_wikipedia):
         soup = BeautifulSoup(response.text, 'html.parser')
         infobox = soup.find('table', {'class': 'infobox'})
 
-        if not infobox:
-            return None
-
         ingredients = []
-        for row in infobox.find_all('tr'):
-            header = row.find('th')
-            if header and 'ingredients' in header.get_text().lower():
-                content = row.find('td')
-                if content:
-                    for item in content.find_all(['li', 'p']):
-                        text = item.get_text().replace("\xa0", " ")
-                        if text:
-                            ingredients.append(text)
+        image_url = None
 
-        return ingredients if ingredients else None
+        if infobox:
+            # Extract ingredients
+            for row in infobox.find_all('tr'):
+                header = row.find('th')
+                if header and 'ingredients' in header.get_text().lower():
+                    content = row.find('td')
+                    if content:
+                        for item in content.find_all(['li', 'p']):
+                            text = item.get_text(strip=False).replace("\xa0", " ")
+                            if text:
+                                ingredients.append(text)
+
+            # Extract image URL
+            img_tag = infobox.find('img')
+            if img_tag:
+                image_url = "https:" + img_tag['src']
+
+        return ingredients, image_url
+
     except Exception as e:
-        print(f"Error fetching ingredients: {e}")
-        return None
+        print(f"Error fetching details: {e}")
+        return None, None
