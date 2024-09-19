@@ -26,8 +26,10 @@ def play_round(player, difficulty, used_cocktails):
     """
     available_cocktails = [cocktail for cocktail in cocktails[difficulty] if cocktail['name'] not in used_cocktails]
     if not available_cocktails:
-        print("No more unique cocktails available. Ending the game.")
-        return 0
+        print(
+            f"\nNo more unique cocktails available. Resetting the list of cocktails with the same difficulty.")
+        used_cocktails.clear()  # Reset the used cocktails
+        available_cocktails = [cocktail for cocktail in cocktails[difficulty]]
 
     cocktail_data = random.choice(available_cocktails)
     cocktail_name = cocktail_data["name"]
@@ -37,8 +39,9 @@ def play_round(player, difficulty, used_cocktails):
     ingredients, image_url = get_cocktail_ingredients_and_url(cocktail_wikipedia)
 
     if ingredients is None:
-        print(f"Could not find details for {cocktail_name}. Skipping...")
-        return 0
+        print(f"Oops! It looks like we had a hiccup and couldn't fetch the ingredients for {cocktail_name}.")
+        print("But don’t worry, we’re giving you 10 points because it's definitely not your fault!😉")
+        return 10
 
     print(f"\n{player}, here are the ingredients for this cocktail:\n")
     for ingredient in ingredients:

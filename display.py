@@ -1,7 +1,10 @@
 """
     Cocktail Connoisseur Display Module
 
-    This module contains functions to handle the display of game instructions and the winner celebration in the 'Cocktail Connoisseur' game. The functions are designed to enhance the user experience by providing colorful, formatted messages using the `colorama` library.
+    This module contains functions to handle the display of game instructions
+     and the winner celebration in the 'Cocktail Connoisseur' game.
+    The functions are designed to enhance the user experience
+    by providing colorful, formatted messages using the `colorama` library.
 """
 
 
@@ -51,43 +54,69 @@ Let's get started!
 
 def celebrate_winner(players_scores):
     """
-        Celebrates the winner(s) of the 'Cocktail Connoisseur' game.
+    Celebrates the winner(s) of the 'Cocktail Connoisseur' game.
 
-        This function takes the player scores and finds the player(s) with the highest score.
-        It then displays a celebratory message based on the results:
-        - If there's one winner, it congratulates them.
-        - If there's a tie, it congratulates all players involved.
-        - If a player scored zero points, a motivational message is displayed.
+    Handles the following cases:
+    - One-player game:
+        * If the player scores 0 points, they lose and a motivational message is displayed.
+        * If the player scores more than 0 points, they win.
+    - Multiplayer game:
+        * If one player has the highest score, they win.
+        * If multiple players tie for the highest score, they all win.
+        * If all players score 0 points, it displays a motivational message.
 
-        Args:
-            players_scores (dict): A dictionary where the keys are player names
-                                 and the values are their corresponding scores.
+    Args:
+        players_scores (dict): A dictionary where the keys are player names
+                               and the values are their corresponding scores.
 
-        Returns:
-            None
-      """
-    # Find the player(s) with the highest score
+    Returns:
+        None
+    """
     max_score = max(players_scores.values())
     winners = [player for player, score in players_scores.items() if score == max_score]
+    total_players = len(players_scores)
 
-    if len(winners) == 1:
-        winner = winners[0]
-        if players_scores[winner] == 0:
+    if total_players == 1:
+        # Case: One-player game
+        player = winners[0]  # Single player will always be in 'winners'
+        if max_score == 0:
+            # Player with 0 points (motivational message)
             print(f"""
-    😅 Oh no, {winner}! It looks like you scored 0 points. 😅
-    🍹 Don't worry! Practice makes perfect. 🍹
-    🔄 Why not try again and sharpen your cocktail knowledge? 🔄
-    """)
+        😅 Oh no, {player}! You scored 0 points! 😅
+        🍹 Don't worry! Practice makes perfect. 🍹
+        🔄 Why not try again and sharpen your cocktail knowledge? 🔄
+        """)
         else:
+            # Player with more than 0 points
             print(f"""{Fore.RED}
-    🎉🎉🎉 CONGRATULATIONS {winner}! 🎉🎉🎉{Style.RESET_ALL}
-    🏆 You are the Cocktail Connoisseur Champion! 🏆
-    🥂 You scored {players_scores[winner]} points! 🥂
-    🍾 Time to celebrate with your favorite drink! 🍾
-    """)
+        🎉🎉🎉 CONGRATULATIONS {player}! 🎉🎉🎉{Style.RESET_ALL}
+        🏆 You are the Cocktail Connoisseur Champion! 🏆
+        🥂 You scored {max_score} points! 🥂
+        🍾 Time to celebrate with your favorite drink! 🍾
+        """)
     else:
-        print(f"""
-    🎉 It's a tie between {', '.join(winners)}! 🎉
-    🍸 You all are Cocktail Connoisseur Champions! 🍸
-    🥂 Time to celebrate with your favorite drinks! 🥂
-    """)
+        # Case: Multiplayer game
+        if max_score == 0:
+            # All players scored 0 points
+            print(f"""
+        😅 Oh no! It looks like all players scored 0 points! 😅
+        🍹 Don't worry! Practice makes perfect. 🍹
+        🔄 Why not try again and sharpen your cocktail knowledge? 🔄
+        """)
+        elif len(winners) == 1:
+            # One winner
+            winner = winners[0]
+            print(f"""{Fore.RED}
+        🎉🎉🎉 CONGRATULATIONS {winner}! 🎉🎉🎉{Style.RESET_ALL}
+        🏆 You are the Cocktail Connoisseur Champion! 🏆
+        🥂 You scored {players_scores[winner]} points! 🥂
+        🍾 Time to celebrate with your favorite drink! 🍾
+        """)
+        else:
+            # Multiple winners (tie)
+            print(f"""
+        🎉 It's a tie between {', '.join(winners)}! 🎉
+        🏆 You all scored {max_score} points and are Cocktail Connoisseur Champions! 🏆
+        🥂 Time to celebrate with your favorite drinks! 🥂
+        """)
+
