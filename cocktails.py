@@ -39,7 +39,12 @@ cocktails = {
         {
             "name": "Whiskey Sour",
             "wikipedia": "Whiskey_sour"
+        },
+        {
+            "name": "Blue Lagoon"",
+            "wikipedia": "Blue_Lagoon_(cocktail)"
         }
+        
     ],
     "medium": [
         {
@@ -81,6 +86,10 @@ cocktails = {
         {
             "name": "Blue Hawaii",
             "wikipedia": "Blue_Hawaii_(cocktail)"
+        },
+        {
+            "name": "Moscow Mule",
+            "wikipedia": "Moscow_mule"
         }
     ],
     "hard": [
@@ -123,6 +132,10 @@ cocktails = {
         {
             "name": "Monaco",
             "wikipedia": "Monaco_(cocktail)"
+        },
+        {
+            "name": "Blood and Sand",
+            "wikipedia": "Blood_and_Sand_(cocktail)"
         }
     ]
 }
