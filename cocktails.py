@@ -41,7 +41,7 @@ cocktails = {
             "wikipedia": "Whiskey_sour"
         },
         {
-            "name": "Blue Lagoon"",
+            "name": "Blue Lagoon",
             "wikipedia": "Blue_Lagoon_(cocktail)"
         }
         
